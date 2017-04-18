@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="EN">
+<html class="theme-next muse use-motion" lang="CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://blog.ming-yan.net/2017/04/17/模板解析器测试题（转载）/index.html">
 <meta property="og:site_name" content="Ming Yan">
 <meta property="og:description" content="阿里的一道前端测试题，转载自surmon.me题目示意：1234567891011var greeting = &apos;My name is $&amp;#123;name&amp;#125;, age $&amp;#123;age&amp;#125;, I am a $&amp;#123;job.jobName&amp;#125;&apos;;var employee = &amp;#123;    name: &apos;XiaoMing&apos;,    age: 11,">
-<meta property="og:updated_time" content="2017-04-18T02:19:56.662Z">
+<meta property="og:updated_time" content="2017-04-18T02:22:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板解析器测试题（转载）">
 <meta name="twitter:description" content="阿里的一道前端测试题，转载自surmon.me题目示意：1234567891011var greeting = &apos;My name is $&amp;#123;name&amp;#125;, age $&amp;#123;age&amp;#125;, I am a $&amp;#123;job.jobName&amp;#125;&apos;;var employee = &amp;#123;    name: &apos;XiaoMing&apos;,    age: 11,">
@@ -134,7 +134,7 @@
   <title> 模板解析器测试题（转载） | Ming Yan </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="EN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="CN">
 
   
 
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-17T14:01:26-07:00">
                 2017-04-17
@@ -324,7 +324,8 @@
       
         <p>阿里的一道前端测试题，转载自surmon.me<br>题目示意：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> greeting = <span class="string">'My name is $&#123;name&#125;, age $&#123;age&#125;, I am a $&#123;job.jobName&#125;'</span>;</div><div class="line"><span class="keyword">var</span> employee = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'XiaoMing'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="number">11</span>,</div><div class="line">    <span class="attr">job</span>: &#123;</div><div class="line">        <span class="attr">jobName</span>: <span class="string">'designer'</span>,</div><div class="line">        <span class="attr">jobLevel</span>: <span class="string">'senior'</span></div><div class="line">    &#125; </div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> result = greeting.render(employee);</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure></p>
 <h2 id="解决方案1，-正则表达式："><a href="#解决方案1，-正则表达式：" class="headerlink" title="解决方案1， 正则表达式："></a>解决方案1， 正则表达式：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/\$\&#123;(\w+|\w+\.\w+)\&#125;/g</span>, match =&gt; &#123;</div><div class="line">    <span class="keyword">var</span> keys = match.replace(<span class="string">'$&#123;'</span>, <span class="string">''</span>).replace(<span class="string">'&#125;'</span>, <span class="string">''</span>).split(<span class="string">'.'</span>)</div><div class="line">    <span class="keyword">return</span> keys.reduce(<span class="function">(<span class="params">acc, cv</span>) =&gt;</span> acc[cv], obj)</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="解决方案2，-字符串模板ES6："><a href="#解决方案2，-字符串模板ES6：" class="headerlink" title="解决方案2， 字符串模板ES6："></a>解决方案2， 字符串模板ES6：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="comment">// 利用了ES6的解构、对象keys新方法，在函数内部解构并自动展开变量</span></div><div class="line">    <span class="built_in">eval</span>(<span class="string">`var &#123;<span class="subst">$&#123;<span class="built_in">Object</span>.keys(obj).join(<span class="string">','</span>)&#125;</span>&#125; = obj`</span>)</div><div class="line">    <span class="comment">// 利用eval使字符串直接作为ES6解析</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">'`'</span> + <span class="keyword">this</span> + <span class="string">'`'</span>)</div><div class="line">&#125;</div><div class="line"><span class="string">``</span><span class="string">` </span></div><div class="line"></div><div class="line"></div><div class="line">## 解决方案3， 字符串模板(with函数)：</div><div class="line">`<span class="string">``</span> javascript</div><div class="line"><span class="comment">// 代码由掘金大神@一口怪兽一口烟提供</span></div><div class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">with</span>(obj) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">'`'</span> + <span class="keyword">this</span> + <span class="string">'`'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="解决方案2，-字符串模板ES6："><a href="#解决方案2，-字符串模板ES6：" class="headerlink" title="解决方案2， 字符串模板ES6："></a>解决方案2， 字符串模板ES6：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="comment">// 利用了ES6的解构、对象keys新方法，在函数内部解构并自动展开变量</span></div><div class="line">    <span class="built_in">eval</span>(<span class="string">`var &#123;<span class="subst">$&#123;<span class="built_in">Object</span>.keys(obj).join(<span class="string">','</span>)&#125;</span>&#125; = obj`</span>)</div><div class="line">    <span class="comment">// 利用eval使字符串直接作为ES6解析</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">'`'</span> + <span class="keyword">this</span> + <span class="string">'`'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="解决方案3，-字符串模板-with函数-："><a href="#解决方案3，-字符串模板-with函数-：" class="headerlink" title="解决方案3， 字符串模板(with函数)："></a>解决方案3， 字符串模板(with函数)：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 代码由掘金大神@一口怪兽一口烟提供</span></div><div class="line"><span class="built_in">String</span>.prototype.render = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">with</span>(obj) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">'`'</span> + <span class="keyword">this</span> + <span class="string">'`'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>著作权归作者所有。<br>作者：Surmon<br>链接：<a href="https://surmon.me/article/32" target="_blank" rel="external">https://surmon.me/article/32</a><br>来源：Surmon.me</p>
 
       
@@ -419,10 +420,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -443,7 +444,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -456,7 +457,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -490,7 +491,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案1，-正则表达式："><span class="nav-number">1.</span> <span class="nav-text">解决方案1， 正则表达式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案2，-字符串模板ES6："><span class="nav-number">2.</span> <span class="nav-text">解决方案2， 字符串模板ES6：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案1，-正则表达式："><span class="nav-number">1.</span> <span class="nav-text">解决方案1， 正则表达式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案2，-字符串模板ES6："><span class="nav-number">2.</span> <span class="nav-text">解决方案2， 字符串模板ES6：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案3，-字符串模板-with函数-："><span class="nav-number">3.</span> <span class="nav-text">解决方案3， 字符串模板(with函数)：</span></a></li></ol></div>
             
 
           </div>
@@ -522,7 +523,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
